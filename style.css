@@ -43,9 +43,15 @@ body{
 }
 
 .logo{
+    position: relative;
     font-size: 2.5rem;  
     color: var(--text-color);
     font-weight: 600;
+}
+
+.navbar{
+    position: relative ;
+   
 }
 
 .navbar a{
@@ -54,14 +60,16 @@ body{
     font-weight: 500;
     margin-left: 3.5rem;
     transition: 0.3s;
+   
 }
 
 .navbar a:hover,
-.navbar a .active {
+.navbar a.active {
     color: var(--main-color); 
 }
 
 #menu-icon{
+    position: relative;
     font-size: 3.6rem;
     color: var(--text-color);
     cursor: pointer;
@@ -111,7 +119,7 @@ section{
     -webkit-text-stroke: .7px var(--main-color);
     background-repeat: no-repeat;
     -webkit-background-clip: text;
-    background-position: 0 0 ;
+    background-position: -33rem 0 ;
     animation: homeBgText 6s linear infinite;
     animation-delay: 2s;
     
@@ -126,6 +134,17 @@ section{
     height: 100%;
     border-right: 2px var(--main-color);
     z-index: -1;
+    animation: homeCursorText 6s linear infinite;
+    animation-delay: 2s;
+}
+
+.home-content img{
+    position: absolute;
+    top:200px;
+    right: 150px;
+    width: 25%;
+    height: 70%;
+   
 }
 
 .home-content p{
@@ -254,14 +273,15 @@ span{
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%)rotate(0);
+    transform: translate(-50%, -50%) rotate(0);
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    border-top: .2rem solid red;
+    border-top: solid var(--second-bg-color);
     border-right: .2rem solid var(--main-color);
-    border-bottom: .2rem solid red;
-    border-left: .2rem solid var(--main-color)
+    border-bottom: solid var(--second-bg-color);
+    border-left: .2rem solid var(--main-color);
+    animation: aboutSpinner 8s linear infinite;
 }
 
 .about-content{
@@ -309,7 +329,7 @@ span{
 }
 
 .eduaction-column .title{
-    font-size: 2.5rem;
+    font-size: 5rem;
     margin: 0 0 1.5rem 2rem;
 
 }
@@ -439,16 +459,37 @@ span{
 }
 
 .skills-column:nth-child(1) .skills-content .progress:nth-child(3) .bar span{
-    width: 80%;
+    width: 35%;
 }
 .skills-column:nth-child(1) .skills-content .progress:nth-child(4) .bar span{
     width: 70%;
 }
 .skills-column:nth-child(1) .skills-content .progress:nth-child(5) .bar span{
-    width: 70%;
+    width: 40%;
 }
 .skills-column:nth-child(1) .skills-content .progress:nth-child(6) .bar span{
     width: 70%;
+}
+
+.skills-column:nth-child(2) .skills-content .progress:nth-child(1) .bar span{
+    width: 65%;
+}
+
+.skills-column:nth-child(2) .skills-content .progress:nth-child(2) .bar span{
+    width: 70%;
+}
+
+.skills-column:nth-child(2) .skills-content .progress:nth-child(3) .bar span{
+    width: 60%;
+}
+.skills-column:nth-child(2) .skills-content .progress:nth-child(4) .bar span{
+    width: 40%;
+}
+.skills-column:nth-child(2) .skills-content .progress:nth-child(5) .bar span{
+    width: 40%;
+}
+.skills-column:nth-child(2) .skills-content .progress:nth-child(6) .bar span{
+    width: 30%;
 }
 
 .contact{
@@ -572,30 +613,58 @@ span{
     color: var(--main-color);
 }
 
+/* animation reload and scroll */
+
+/* .animate {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%; 
+    background: yellowgreen;
+    z-index: 98;
+    
+} */
+
+/* .logo .animate,
+.navbar .animate,
+#menu-icon .animate,
+.home .home-animate .animate {
+    animation: showRight 1s ease forwards;
+    animation-delay: calc(.3s * var(--i));
+} */
 /* breakpoints */
 @media (max-width:1200px){
     html{
         font-size: 55%;
     }
+
 }
 
 @media (max-width:991px){
     .header {
         padding: 2rem 4%;
     }
+
+    section {
+        padding:  10rem 4% 2rem;
+    }
+    
+    .home {
+        padding: 0 4%;
+    }
+    
+    
+    .footer{
+        padding:  2rem 4%;
+    }
+
+    .home-content img{
+        display: none;
+    }
 }
 
-section {
-    padding:  10rem 4% 2rem;
-}
 
-.home {
-    padding: 0 4%;
-}
-
-.footer{
-    padding:  2rem 4%;
-}
 
 @media (max-width:768px){
     .header {
@@ -612,14 +681,14 @@ section {
         left: -100%;
         width: 100%;
         padding: 1rem 4%;
-        background: var(--bg-color);
+        background: var(--main-color);
         box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2 );
         z-index: 1;
         transition: .25s ease;
         transition-delay: .25s;
     }
 
-    .navbar .active{
+    .navbar.active{
         left: 0;
         transition-delay: 0s;
     }
@@ -628,17 +697,17 @@ section {
     .navbar .active-nav{
         position: absolute;
         top: 0;
-        left: 0;
+        left: -100%;
         width: 100%;
         height: 100%;
         background: var(--bg-color);
         border-top: .1rem solid rgba(0, 0, 0, .2);
         z-index: -1;
         transition: .25s ease;
-        transition-delay: 0s;
-    }
+        transition-delay: 0s; 
+    } 
         
-    .navbar .active .active-nav {
+   .navbar.active .active-nav {
         left:  0; 
         transition-delay: .25s;
     }
@@ -646,20 +715,20 @@ section {
 
 
     .navbar a {
-        display: block;
+        display: block; 
         font-size: 2rem;
         margin: 3rem 0;
-        transform: translateX( -20rem);
+        transform: translateX(-20rem); 
         transition: .25s ease;
         transition-delay: 0s;
     }
 
-        
-    .navbar .active a{
+         
+    .navbar.active a{
         transform: translateX(0);
         transition-delay: .25s;
     }
-    
+     
 }
 
 
@@ -707,6 +776,7 @@ section {
         margin-top: 2rem;
         text-align: center;
     }
+    
 }
 
 @media(max-width:371px){
@@ -736,5 +806,38 @@ section {
     65%,
     85%{
         background-position: 0  0;
+    }
+}
+
+@keyframes homeCursorText {
+    0%,
+    10%,
+    100% {
+        width: 0;
+    }
+    65%,
+    78%,
+    85%{
+        width: 100%;
+        opacity: 1;
+    }
+
+    75%,
+    81% {
+        opacity: 0;
+    } 
+
+}
+
+@keyframes aboutSpinner{
+    100%{
+        transform: translate(-50%, -50%) rotate(360deg);
+
+    }
+}
+
+@keyframes showRight{
+    100%{
+        width: 0;
     }
 }
